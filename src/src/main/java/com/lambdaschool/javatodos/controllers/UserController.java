@@ -185,20 +185,20 @@ public class UserController
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    // http://localhost:2019/users/user/15/role/2
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    @DeleteMapping("/user/{userid}/role/{roleid}")
-    public ResponseEntity<?> deleteUserRoleByIds(
-            @PathVariable
-                    long userid,
-            @PathVariable
-                    long roleid)
-    {
-        userService.deleteUserRole(userid,
-                roleid);
-
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
+//    // http://localhost:2019/users/user/15/role/2
+//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+//    @DeleteMapping("/user/{userid}/role/{roleid}")
+//    public ResponseEntity<?> deleteUserRoleByIds(
+//            @PathVariable
+//                    long userid,
+//            @PathVariable
+//                    long roleid)
+//    {
+//        userService.deleteUserRole(userid,
+//                roleid);
+//
+//        return new ResponseEntity<>(HttpStatus.OK);
+//    }
 
 
     // http://localhost:2019/users/user/15/role/2
@@ -215,4 +215,6 @@ public class UserController
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+
 }
