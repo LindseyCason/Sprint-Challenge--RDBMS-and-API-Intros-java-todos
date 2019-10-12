@@ -5,7 +5,9 @@ import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="todos")
@@ -27,6 +29,8 @@ public class Todo extends Auditable {
     @CreatedDate
     @Temporal(TemporalType.TIMESTAMP)
     private Date datestarted;
+
+
 
     public Todo() {
     }
@@ -67,5 +71,13 @@ public class Todo extends Auditable {
 
     public void setDatestarted(Date datestarted) {
         this.datestarted = datestarted;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

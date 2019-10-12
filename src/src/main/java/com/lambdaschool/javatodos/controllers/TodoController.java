@@ -15,8 +15,8 @@ public class TodoController {
     @Autowired
     private TodoService todoService;
     @PutMapping(value = "/todoid/{todoid}", produces = {"application/json"}, consumes = {"application/json"})
-    public ResponseEntity<?> updateTodo(@PathVariable long todoid, @RequestBody Todo todo)
+    public ResponseEntity<?> updateTodo(@PathVariable long todoid, @RequestBody Todo todos)
     {
-        return new ResponseEntity<>(todoService.update(todo, todoid), HttpStatus.OK);
+        return new ResponseEntity<>(todoService.update(todos, todoid), HttpStatus.OK);
     }
 }

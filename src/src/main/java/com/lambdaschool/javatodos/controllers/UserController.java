@@ -1,5 +1,6 @@
 package com.lambdaschool.javatodos.controllers;
 
+import com.lambdaschool.javatodos.models.Todo;
 import com.lambdaschool.javatodos.models.User;
 import com.lambdaschool.javatodos.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -185,34 +186,32 @@ public class UserController
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+//    // http://localhost:2019/users/user/15/role/2
+//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+//    @DeleteMapping("/user/{userid}/role/{roleid}")
+//    public ResponseEntity<?> deleteUserRoleByIds(
+//            @PathVariable
+//                    long userid,
+//            @PathVariable
+//                    long roleid)
+//    {
+//        userService.deleteUserRole(userid,
+//                roleid);
+//
+//        return new ResponseEntity<>(HttpStatus.OK);
+//    }
+
+
     // http://localhost:2019/users/user/15/role/2
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    @DeleteMapping("/user/{userid}/role/{roleid}")
-    public ResponseEntity<?> deleteUserRoleByIds(
+    @PostMapping(value = "/todo/{userid}", consumes = {"application/json"})
+    public ResponseEntity<?> postTodo(
             @PathVariable
-                    long userid,
-            @PathVariable
-                    long roleid)
+                    long userid, @RequestBody Todo updateTodo)
     {
-        userService.deleteUserRole(userid,
-                roleid);
-
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-
-    // http://localhost:2019/users/user/15/role/2
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    @PostMapping("/user/{userid}/role/{roleid}")
-    public ResponseEntity<?> postUserRoleByIds(
-            @PathVariable
-                    long userid,
-            @PathVariable
-                    long roleid)
-    {
-        userService.addUserRole(userid,
-                roleid);
+        userService.addToDo(userid, updateTodo);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+
 }

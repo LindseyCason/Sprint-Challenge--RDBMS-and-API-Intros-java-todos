@@ -15,7 +15,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/roles")
+@RequestMapping("/users")
 public class RolesController
 {
     @Autowired
