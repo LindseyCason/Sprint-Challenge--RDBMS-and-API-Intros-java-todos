@@ -51,9 +51,9 @@ public class SeedData implements CommandLineRunner
         u1.getUseremails()
                 .add(new Useremail(u1,
                         "admin@mymail.local"));
-        u1.getUserTodos().add(new Todo("Finish java-orders-swagger", new Date(), u1));
-        u1.getUserTodos().add(new Todo("Feed the turtles", new Date(), u1));
-        u1.getUserTodos().add(new Todo("Complete the sprint challenge", new Date(), u1));
+        u1.getTodos().add(new Todo("Finish java-orders-swagger", new Date(), u1));
+        u1.getTodos().add(new Todo("Feed the turtles", new Date(), u1));
+        u1.getTodos().add(new Todo("Complete the sprint challenge", new Date(), u1));
 
         userService.save(u1);
 
@@ -75,8 +75,8 @@ public class SeedData implements CommandLineRunner
         u2.getUseremails()
                 .add(new Useremail(u2,
                         "bunny@email.local"));
-        u2.getUserTodos().add(new Todo("Walk the dogs", new Date(), u2));
-        u2.getUserTodos().add(new Todo("provide feedback to my instructor", new Date(), u2));
+        u2.getTodos().add(new Todo("Walk the dogs", new Date(), u2));
+        u2.getTodos().add(new Todo("provide feedback to my instructor", new Date(), u2));
         userService.save(u2);
 
         // user

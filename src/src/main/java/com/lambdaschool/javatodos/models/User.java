@@ -89,12 +89,12 @@ public class User extends Auditable {
         }
     }
 
-    public List<Todo> getUserTodos() {
+    public List<Todo> getTodos() {
         return todos;
     }
 
-    public void setUserTodos(List<Todo> userTodos) {
-        this.todos = userTodos;
+    public void setTodos(List<Todo> todos) {
+        this.todos = todos;
     }
 
     public void setUsername(String username)
