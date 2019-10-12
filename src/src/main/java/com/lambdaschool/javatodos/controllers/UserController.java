@@ -1,5 +1,6 @@
 package com.lambdaschool.javatodos.controllers;
 
+import com.lambdaschool.javatodos.models.Todo;
 import com.lambdaschool.javatodos.models.User;
 import com.lambdaschool.javatodos.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -202,16 +203,12 @@ public class UserController
 
 
     // http://localhost:2019/users/user/15/role/2
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    @PostMapping("/user/{userid}/role/{roleid}")
-    public ResponseEntity<?> postUserRoleByIds(
+    @PostMapping(value = "/todo/{userid}", consumes = {"application/json"})
+    public ResponseEntity<?> postTodo(
             @PathVariable
-                    long userid,
-            @PathVariable
-                    long roleid)
+                    long userid, @RequestBody Todo updateTodo)
     {
-        userService.addUserRole(userid,
-                roleid);
+        userService.addToDo(userid, updateTodo);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

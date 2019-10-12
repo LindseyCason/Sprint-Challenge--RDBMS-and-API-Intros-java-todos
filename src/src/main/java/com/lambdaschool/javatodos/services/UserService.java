@@ -1,5 +1,6 @@
 package com.lambdaschool.javatodos.services;
 
+import com.lambdaschool.javatodos.models.Todo;
 import com.lambdaschool.javatodos.models.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -20,6 +21,8 @@ public interface UserService
     void delete(long id);
 
     User save(User user);
+
+    Todo addToDo(long userid, Todo updateTodo);
 
     User update(User user,
                 long id,

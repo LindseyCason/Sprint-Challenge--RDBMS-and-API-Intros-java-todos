@@ -1,13 +1,10 @@
 package com.lambdaschool.javatodos.services;
 
-import com.lambdaschool.javatodos.models.Role;
-import com.lambdaschool.javatodos.models.User;
-import com.lambdaschool.javatodos.models.Userrole;
-import com.lambdaschool.javatodos.models.Useremail;
+import com.lambdaschool.javatodos.models.*;
 import com.lambdaschool.javatodos.repos.RoleRepo;
+import com.lambdaschool.javatodos.repos.TodoRepo;
 import com.lambdaschool.javatodos.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -31,6 +28,9 @@ public class UserServiceImpl implements UserDetailsService,
 
     @Autowired
     private RoleRepo rolerepos;
+
+    @Autowired
+    private TodoRepo todorepos;
 
     @Transactional
     @Override
@@ -120,6 +120,14 @@ public class UserServiceImpl implements UserDetailsService,
                     .add(new Useremail(newUser, ue.getUseremail()));
         }
 
+        ArrayList<Todo> newTodos = new ArrayList<>();
+
+        for (Todo td : user.getTodos())
+        {
+            newTodos.add(new Todo(td.getDescription(), td.getDatestarted(), newUser));
+        }
+        newUser.setTodos(newTodos);
+
         return userrepos.save(newUser);
     }
 
@@ -198,6 +206,21 @@ public class UserServiceImpl implements UserDetailsService,
             throw new EntityNotFoundException("Role and User Combination Does Not Exists");
         }
     }
+
+    @Transactional
+    @Override
+    public Todo addToDo(long userid, Todo updateTodo){
+
+        Todo newTodo = new Todo();
+        User newUser = findUserById(userid);
+        newTodo.setDescription(updateTodo.getDescription());
+        newTodo.setDatestarted(updateTodo.getDatestarted());
+        newTodo.setUser(newUser);
+
+        return todorepos.save(newTodo);
+    }
+
+
 
     @Transactional
     @Override
